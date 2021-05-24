@@ -1,0 +1,25 @@
+name: Test CI 2
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v2
+
+      - name: Get Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+
+      - name: Java Version
+        run: java -version
+
+      - name: Run Tests
+        run: mvn test
